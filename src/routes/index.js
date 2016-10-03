@@ -5,5 +5,6 @@ module.exports = [
     require('./contact.findAll'),
     require('./contact.findOne'),
     require('./contact.insert'),
-    require('./contact.remove')
+    require('./contact.remove'),
+    require('./contact.update')
 ];
