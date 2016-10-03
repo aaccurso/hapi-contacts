@@ -9,6 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "hapi": "^15.1.1"
+    "bcrypt": "^0.8.7",
+    "hapi": "^15.1.1",
+    "hapi-auth-basic": "^4.2.0"
   }
 }

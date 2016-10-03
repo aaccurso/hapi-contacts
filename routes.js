@@ -2,8 +2,11 @@
 
 module.exports = [{
     method: 'GET',
-    path:'/hello', 
+    path:'/me', 
     handler: (request, reply) => {
-        return reply('hello world');
+        return reply(request.auth.credentials);
+    },
+    config: {
+        auth: 'simple'
     }
 }];
