@@ -1,22 +1,31 @@
 'use strict';
 
 const Hapi = require('hapi');
-const HapiAuthBasic = require('hapi-auth-basic');
-
-let routes = require('./src/routes/index');
 
 // Create a server with a host and port
-const server = new Hapi.Server();
+let server = new Hapi.Server();
 server.connection({ 
-    host: 'localhost', 
+    host: 'localhost',
     port: 8000 
 });
 
+// Create datastores for users and contacts
+const Datastore = require('nedb');
+server.db = {
+    users: new Datastore(),
+    contacts: new Datastore()
+};
+
+module.exports = server;
+
+// Add basic authentication
+const HapiAuthBasic = require('hapi-auth-basic');
 server.register(HapiAuthBasic, (err) => {
-    // Add basic authentication
     const validate = require('./src/auth/validate');
     server.auth.strategy('simple', 'basic', { validateFunc: validate });
 
+    // Add routes
+    const routes = require('./src/routes/index');
     for (let route of routes) {
         server.route(route);
     }
@@ -29,5 +38,3 @@ server.register(HapiAuthBasic, (err) => {
         console.log('Server running at:', server.info.uri);
     });
 });
-
-module.exports = server;

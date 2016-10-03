@@ -1,22 +1,23 @@
 'use strict';
 
 const Bcrypt = require('bcrypt');
+const usersSeed = require('./users.seed');
+let server = require('../../server');
 
-const users = {
-    john: {
-        username: 'john',
-        password: '$2a$10$iqJSHD.BGr0E2IxQwYgJmeP3NvhPrXAeLSaGCj6IR/XU5QtjVu5Tm', // 'secret'
-        name: 'John Doe',
-        id: '2133d32a'
+server.db.users.insert(usersSeed, (err, newUsers) => {
+    if (err) {
+        console.error(err);
     }
-};
+    console.log('Users seed:', newUsers);
+});
 
 module.exports = function (request, username, password, callback) {
-    const user = users[username];
-    if (!user) {
-        return callback(null, false);
-    }
-    Bcrypt.compare(password, user.password, (err, isValid) => {
-        callback(err, isValid, { id: user.id, name: user.name });
+    server.db.users.findOne({ username: username }, (err, user) => {
+        if (!user) {
+            return callback(null, false);
+        }
+        Bcrypt.compare(password, user.password, (err, isValid) => {
+            callback(err, isValid, { id: user._id, name: user.name });
+        });
     });
 };

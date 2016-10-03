@@ -11,6 +11,7 @@
   "dependencies": {
     "bcrypt": "^0.8.7",
     "hapi": "^15.1.1",
-    "hapi-auth-basic": "^4.2.0"
+    "hapi-auth-basic": "^4.2.0",
+    "nedb": "^1.8.0"
   }
 }

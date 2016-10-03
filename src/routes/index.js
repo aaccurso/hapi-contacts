@@ -1,3 +1,6 @@
+'use strict';
+
 module.exports = [
-    require('./me')
+    require('./me'),
+    require('./contact.findAll')
 ];
