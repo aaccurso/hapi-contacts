@@ -12,7 +12,7 @@ server.db.contacts.insert(contactsSeed, (err, newContacts) => {
 
 module.exports = {
     method: 'GET',
-    path:'/contact', 
+    path:'/contact',
     handler: (request, reply) => {
         server.db.contacts.find({
             user: request.auth.credentials.id
