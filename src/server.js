@@ -6,7 +6,10 @@ const Hapi = require('hapi');
 let server = new Hapi.Server();
 server.connection({ 
     host: 'localhost',
-    port: 8000 
+    port: 8000 ,
+    routes: {
+        cors: true
+    }
 });
 
 // Create datastores for users and contacts
