@@ -2,7 +2,7 @@
 
 const Bcrypt = require('bcrypt');
 const usersSeed = require('./users.seed');
-let server = require('../../server');
+let server = require('../server');
 
 server.db.users.insert(usersSeed, (err, newUsers) => {
     if (err) {

@@ -1,6 +1,6 @@
 'use strict';
 
-let server = require('../../server');
+let server = require('../server');
 const contactsSeed = require('./contacts.seed');
 
 server.db.contacts.insert(contactsSeed, (err, newContacts) => {

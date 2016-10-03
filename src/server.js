@@ -21,11 +21,11 @@ module.exports = server;
 // Add basic authentication
 const HapiAuthBasic = require('hapi-auth-basic');
 server.register(HapiAuthBasic, (err) => {
-    const validate = require('./src/auth/validate');
+    const validate = require('./auth/validate');
     server.auth.strategy('simple', 'basic', { validateFunc: validate });
 
     // Add routes
-    const routes = require('./src/routes/index');
+    const routes = require('./routes/index');
     for (let route of routes) {
         server.route(route);
     }
