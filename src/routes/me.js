@@ -1,6 +1,6 @@
-"use strict";
+'use strict';
 
-module.exports = [{
+module.exports = {
     method: 'GET',
     path:'/me', 
     handler: (request, reply) => {
@@ -9,4 +9,4 @@ module.exports = [{
     config: {
         auth: 'simple'
     }
-}];
+};
