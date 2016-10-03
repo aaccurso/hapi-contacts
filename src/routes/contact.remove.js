@@ -10,6 +10,9 @@ module.exports = {
             _id: encodeURIComponent(request.params.id),
             user: request.auth.credentials.id
         }, {}, function (err, numRemoved) {
+            if (err) {
+                return Boom.badImplementation('Internal server error', err);
+            }
             reply(numRemoved);
         });
     },

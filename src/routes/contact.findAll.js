@@ -1,5 +1,6 @@
 'use strict';
 
+const Boom = require('boom');
 let server = require('../server');
 const contactsSeed = require('./contacts.seed');
 
@@ -17,6 +18,9 @@ module.exports = {
         server.db.contacts.find({
             user: request.auth.credentials.id
         }, (err, contacts) => {
+            if (err) {
+                return Boom.badImplementation('Internal server error', err);
+            }
             reply(contacts);
         });
     },

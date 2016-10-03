@@ -10,6 +10,9 @@ module.exports = {
         let newContact = request.payload;
         newContact.user = request.auth.credentials.id;
         server.db.contacts.insert(newContact, (err, insertedContact) => {
+            if (err) {
+                return Boom.badImplementation('Internal server error', err);
+            }
             reply(insertedContact);
         });
     },

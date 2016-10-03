@@ -13,6 +13,9 @@ server.db.users.insert(usersSeed, (err, newUsers) => {
 
 module.exports = function (request, username, password, callback) {
     server.db.users.findOne({ username: username }, (err, user) => {
+        if (err) {
+            return callback(err, false);
+        }
         if (!user) {
             return callback(null, false);
         }
